@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:money_app/common/constants/app_colors.dart';
 import 'package:money_app/common/constants/app_text_styles.dart';
 
+import '../../common/widgets/multi_text_button.dart';
 import '../../common/widgets/primary_button.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -39,48 +38,32 @@ class OnboardingPage extends StatelessWidget {
               ),
           ),
           Padding(
-            padding: EdgeInsets.all(24),
+            padding: EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 5),
             child: PrimaryButton(
               text: 'Get Started',
               onPressed: () {},
             ),
           ),
           Padding(
-              padding: EdgeInsets.only(bottom: 76),
-              child: Text(
-                "Already have account? Log in",
-                style: AppTextStyles.smallText.copyWith(
-                    color: AppColors.greyBlack
+            padding: EdgeInsets.only(bottom: 66),
+            child: MultiTextButton(
+              onPressed: () {},
+              children: [
+                Text(
+                  "Already have account? ",
+                  style: AppTextStyles.smallText.copyWith(
+                      color: AppColors.greyBlack
+                  ),
                 ),
-              ),
+                Text(
+                  "Log in",
+                  style: AppTextStyles.smallText.copyWith(
+                      color: AppColors.greenLightOTwo
+                  ),
+                )
+              ],
+            )
           )
-          // Container(
-          //   padding: EdgeInsets.only(bottom: 76, ),
-          //   child: Text(
-          //     "Already have account? Log in",
-          //     style: AppTextStyles.smallText.copyWith(
-          //         color: AppColors.greyBlack
-          //     ),
-          //   ),
-          //   // child: Row(
-          //   //   mainAxisAlignment: MainAxisAlignment.center,
-          //   //   children: [
-          //   //     Text(
-          //   //       "Already have account? ",
-          //   //       style: AppTextStyles.smallText.copyWith(
-          //   //           color: AppColors.greyBlack
-          //   //       ),
-          //   //     ),
-          //   //     Text(
-          //   //       "Log in",
-          //   //       style: AppTextStyles.smallText.copyWith(
-          //   //           color: AppColors.greenLightOTwo
-          //   //       ),
-          //   //     )
-          //   //   ],
-          //   // )
-          // ),
-          //SizedBox(height: 60.0,)
         ],
       ),
     );
