@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_app/common/widgets/password_form_field.dart';
 
 import '../../common/constants/app_colors.dart';
 import '../../common/constants/app_text_styles.dart';
@@ -32,7 +33,15 @@ class SignUpPage extends StatelessWidget {
           Form(
             child: Column(
               children: [
-                CustomTextFormField(hintText: "name...", labelText: "your name")
+                CustomTextFormField(hintText: "name...", labelText: "your name"),
+                PasswordFormField(
+                  labelText: "choose your password",
+                  hintText: "********",
+                ),
+                PasswordFormField(
+                  labelText: "confirm your password",
+                  hintText: "********",
+                )
               ],
             )
           ),

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_text_styles.dart';
 
-class CustomTextFormField extends StatelessWidget {
-  final EdgeInsets? padding;
+class CustomTextFormField extends StatefulWidget {
+  final EdgeInsetsGeometry? padding;
   final String? hintText;
   final String? labelText;
   final TextCapitalization? textCapitalization;
@@ -12,6 +12,8 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? textInputType;
   final int? maxLength;
   final TextInputAction? textInputAction;
+  final Widget? suffixIcon;
+  final bool? obscureText;
 
   const CustomTextFormField({
     super.key,
@@ -23,9 +25,16 @@ class CustomTextFormField extends StatelessWidget {
     this.textInputType,
     this.maxLength,
     this.textInputAction,
+    this.suffixIcon,
+    this.obscureText,
   });
 
-  final defaultBorder = const OutlineInputBorder(
+  @override
+  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
+}
+
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
+  final OutlineInputBorder defaultBorder = const OutlineInputBorder(
     borderSide: BorderSide(
       color: AppColors.greenLightOTwo,
     ),
@@ -34,34 +43,32 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? EdgeInsets.symmetric(
-          vertical: 12,
-          horizontal: 24
+      padding: widget.padding ?? const EdgeInsets.symmetric(
+        vertical: 12,
+        horizontal: 24,
       ),
       child: TextFormField(
-        textInputAction: textInputAction,
-        maxLength: maxLength,
-        keyboardType: textInputType,
-        controller: textEditingController,
-        textCapitalization: textCapitalization ?? TextCapitalization.none,
+        obscureText: widget.obscureText ?? false,
+        textInputAction: widget.textInputAction,
+        maxLength: widget.maxLength,
+        keyboardType: widget.textInputType,
+        controller: widget.textEditingController,
+        textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
         decoration: InputDecoration(
-          hintText: hintText,
+          suffixIcon: widget.suffixIcon,
+          hintText: widget.hintText,
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          labelText: labelText?.toUpperCase(),
+          labelText: widget.labelText?.toUpperCase(),
           labelStyle: AppTextStyles.inputLabelText.copyWith(
-              color: AppColors.grey
+            color: AppColors.grey,
           ),
           border: defaultBorder,
           focusedBorder: defaultBorder,
           errorBorder: defaultBorder.copyWith(
-              borderSide: BorderSide(
-                  color: Colors.red
-              )
+            borderSide: const BorderSide(color: Colors.red),
           ),
           focusedErrorBorder: defaultBorder.copyWith(
-              borderSide: BorderSide(
-                  color: Colors.red
-              )
+            borderSide: const BorderSide(color: Colors.red),
           ),
           enabledBorder: defaultBorder,
           disabledBorder: defaultBorder,
