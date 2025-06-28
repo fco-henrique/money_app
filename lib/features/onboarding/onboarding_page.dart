@@ -15,7 +15,7 @@ class OnboardingPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            flex: 2,
+            //flex: 2,
             child: ClipPath(
               clipper: BordaInclinedClipper(),
               child: Container(
@@ -45,14 +45,14 @@ class OnboardingPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: 66),
+            padding: EdgeInsets.only(bottom: 35),
             child: MultiTextButton(
               onPressed: () {},
               children: [
                 Text(
                   "Already have account? ",
                   style: AppTextStyles.smallText.copyWith(
-                      color: AppColors.greyBlack
+                      color: AppColors.darkGrey
                   ),
                 ),
                 Text(
