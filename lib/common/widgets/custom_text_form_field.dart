@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../constants/app_colors.dart';
 import '../constants/app_text_styles.dart';
@@ -14,6 +15,9 @@ class CustomTextFormField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final Widget? suffixIcon;
   final bool? obscureText;
+  final List<TextInputFormatter>? inputFormatter;
+  final FormFieldValidator<String>? validator;
+  final String? helperText;
 
   const CustomTextFormField({
     super.key,
@@ -27,6 +31,9 @@ class CustomTextFormField extends StatefulWidget {
     this.textInputAction,
     this.suffixIcon,
     this.obscureText,
+    this.inputFormatter,
+    this.validator,
+    this.helperText,
   });
 
   @override
@@ -40,6 +47,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     ),
   );
 
+  String? _helperText;
+
+  @override
+  void initState() {
+    super.initState();
+    _helperText = widget.helperText;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,6 +63,19 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         horizontal: 24,
       ),
       child: TextFormField(
+        onChanged: (value) {
+          if (value.isNotEmpty) {
+            setState(() {
+              _helperText = null;
+            });
+          } else {
+            setState(() {
+              _helperText = widget.helperText;
+            });
+          }
+        },
+        validator: widget.validator,
+        inputFormatters: widget.inputFormatter,
         obscureText: widget.obscureText ?? false,
         textInputAction: widget.textInputAction,
         maxLength: widget.maxLength,
@@ -56,6 +84,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
         decoration: InputDecoration(
           suffixIcon: widget.suffixIcon,
+          helperText: _helperText ?? "",
+          errorMaxLines: 3,
+          helperMaxLines: 3,
           hintText: widget.hintText,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: widget.labelText?.toUpperCase(),

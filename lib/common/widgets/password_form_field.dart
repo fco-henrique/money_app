@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:money_app/common/widgets/custom_text_form_field.dart';
 
@@ -8,13 +6,17 @@ class PasswordFormField extends StatefulWidget {
   final EdgeInsetsGeometry? padding;
   final String? hintText;
   final String? labelText;
+  final FormFieldValidator<String>? validator;
+  final String? helperText;
 
   const PasswordFormField({
     super.key,
     this.textEditingController,
     this.padding,
     this.hintText,
-    this.labelText
+    this.labelText,
+    this.validator,
+    this.helperText,
   });
 
   @override
@@ -27,6 +29,8 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
+      helperText: widget.helperText,
+      validator: widget.validator,
       obscureText: isHidden,
       textEditingController: widget.textEditingController,
       padding: widget.padding,

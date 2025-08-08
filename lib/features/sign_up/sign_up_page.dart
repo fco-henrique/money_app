@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:money_app/common/utils/uppercase_text_formatter.dart';
+import 'package:money_app/common/utils/validator.dart';
 import 'package:money_app/common/widgets/password_form_field.dart';
 
 import '../../common/constants/app_colors.dart';
@@ -7,70 +11,102 @@ import '../../common/widgets/custom_text_form_field.dart';
 import '../../common/widgets/multi_text_button.dart';
 import '../../common/widgets/primary_button.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
+        // padding: const EdgeInsets.symmetric(horizontal: 24).copyWith(bottom: 50),
         children: [
           Text(
-              "Spend Smarter",
-              textAlign: TextAlign.center,
-              style: AppTextStyles.mediumText.copyWith(
-                  color: AppColors.greenLightOTwo
-              )
+            "Spend Smarter",
+            textAlign: TextAlign.center,
+            style: AppTextStyles.mediumText.copyWith(
+              color: AppColors.greenLightOTwo,
+            ),
           ),
           Text(
             "Save More",
             textAlign: TextAlign.center,
             style: AppTextStyles.mediumText.copyWith(
-                color: AppColors.greenLightOTwo
+              color: AppColors.greenLightOTwo,
             ),
           ),
-          Image.asset("assets/images/sign_up_image.png"),
+          Image.asset("assets/images/sign_up_image.png", height: 200,),
           Form(
+            key: _formKey,
             child: Column(
               children: [
-                CustomTextFormField(hintText: "name...", labelText: "your name"),
+                CustomTextFormField(
+                  hintText: "Name...",
+                  labelText: "your name",
+                  inputFormatter: [UpperCaseTextFormatter()],
+                  validator: Validator.validateName,
+                ),
+                CustomTextFormField(
+                  hintText: "email@email.com",
+                  labelText: "your email",
+                  textInputType: TextInputType.emailAddress,
+                  validator: Validator.validateEmail,
+                ),
                 PasswordFormField(
+                  textEditingController: _passwordController,
                   labelText: "choose your password",
                   hintText: "********",
+                  validator: Validator.validatePassword,
+                  helperText: "Pelo menos 8 caracteres, letras maiúsculas, minúsculas, números e símbolos.",
                 ),
                 PasswordFormField(
                   labelText: "confirm your password",
                   hintText: "********",
+                  validator: (value) => Validator.validateConfirmPassword(value, _passwordController.text),
                 )
               ],
-            )
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 5),
-            child: PrimaryButton(
-              text: 'Sign Up',
-              onPressed: () {},
             ),
           ),
           Padding(
-              padding: EdgeInsets.only(bottom: 35),
-              child: MultiTextButton(
-                onPressed: () {},
-                children: [
-                  Text(
-                    "Already have account? ",
-                    style: AppTextStyles.smallText.copyWith(
-                        color: AppColors.darkGrey
-                    ),
+            padding: const EdgeInsets.only(top: 15, left: 24, right: 24),
+            child: PrimaryButton(
+              text: 'Sign Up',
+              onPressed: () {
+                final valid = _formKey.currentState != null && _formKey.currentState!.validate();
+                if (valid) {
+                  log("Prosseguir Login");
+                } else {
+                  log("Falha no Login");
+                }
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 35, left: 70, right: 70),
+            child: MultiTextButton(
+              onPressed: () {},
+              children: [
+                Text(
+                  "Already have account? ",
+                  style: AppTextStyles.smallText.copyWith(
+                    color: AppColors.darkGrey,
                   ),
-                  Text(
-                    "Log in",
-                    style: AppTextStyles.smallText.copyWith(
-                        color: AppColors.greenLightOTwo
-                    ),
-                  )
-                ],
-              )
+                ),
+                Text(
+                  "Log in",
+                  style: AppTextStyles.smallText.copyWith(
+                    color: AppColors.greenLightOTwo,
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),
