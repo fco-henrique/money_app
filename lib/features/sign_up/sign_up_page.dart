@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:money_app/common/utils/uppercase_text_formatter.dart';
 import 'package:money_app/common/utils/validator.dart';
 import 'package:money_app/common/widgets/password_form_field.dart';
+import 'package:money_app/features/sign_up/sign_up_controller.dart';
+import 'package:money_app/features/sign_up/sign_up_state.dart';
 
 import '../../common/constants/app_colors.dart';
 import '../../common/constants/app_text_styles.dart';
@@ -21,6 +23,40 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
+  final _controller = SignUpController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      if (_controller.state is SignUpLoadingState) {
+        showDialog(
+            context: context,
+            builder: (context) => Center(
+              child: CircularProgressIndicator(),
+            )
+        );
+      }
+
+      if (_controller.state is SignUpSuccessState) {
+        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) => Scaffold(
+            body: Center(
+              child: Text("Mael Feioso")
+              ,)
+            ,)
+          ,)
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +117,7 @@ class _SignUpPageState extends State<SignUpPage> {
               onPressed: () {
                 final valid = _formKey.currentState != null && _formKey.currentState!.validate();
                 if (valid) {
-                  log("Prosseguir Login");
+                  _controller.doSignUp();
                 } else {
                   log("Falha no Login");
                 }

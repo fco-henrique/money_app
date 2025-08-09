@@ -41,6 +41,8 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
+  bool _isHelperTextVisible = true;
+
   final OutlineInputBorder defaultBorder = const OutlineInputBorder(
     borderSide: BorderSide(
       color: AppColors.greenLightOTwo,
@@ -64,13 +66,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       ),
       child: TextFormField(
         onChanged: (value) {
-          if (value.isNotEmpty) {
+          if (value.isEmpty && !_isHelperTextVisible) {
             setState(() {
-              _helperText = null;
+              _isHelperTextVisible = true;
             });
-          } else {
+          } else if (value.isNotEmpty && _isHelperTextVisible) {
             setState(() {
-              _helperText = widget.helperText;
+              _isHelperTextVisible = false;
             });
           }
         },
@@ -84,9 +86,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
         decoration: InputDecoration(
           suffixIcon: widget.suffixIcon,
-          helperText: _helperText ?? "",
+          helperText: _helperText ?? " ",
+          helperStyle: TextStyle(
+            color: _isHelperTextVisible ? AppColors.grey : Colors.transparent,
+          ),
           errorMaxLines: 3,
           helperMaxLines: 3,
+          isDense: true,
+          contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
           hintText: widget.hintText,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: widget.labelText?.toUpperCase(),
