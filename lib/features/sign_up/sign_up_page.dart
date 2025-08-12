@@ -9,6 +9,8 @@ import 'package:money_app/features/sign_up/sign_up_state.dart';
 
 import '../../common/constants/app_colors.dart';
 import '../../common/constants/app_text_styles.dart';
+import '../../common/widgets/custom_bottom_sheet.dart';
+import '../../common/widgets/custom_circular_progress_indicator.dart';
 import '../../common/widgets/custom_text_form_field.dart';
 import '../../common/widgets/multi_text_button.dart';
 import '../../common/widgets/primary_button.dart';
@@ -32,9 +34,7 @@ class _SignUpPageState extends State<SignUpPage> {
       if (_controller.state is SignUpLoadingState) {
         showDialog(
             context: context,
-            builder: (context) => Center(
-              child: CircularProgressIndicator(),
-            )
+            builder: (context) => CustomCircularProgressIndicator(),
         );
       }
 
@@ -48,6 +48,11 @@ class _SignUpPageState extends State<SignUpPage> {
             ,)
           ,)
         );
+      }
+
+      if (_controller.state is SignUpErrorState) {
+        Navigator.pop(context);
+        customModalBottomSheet(context);
       }
     });
   }

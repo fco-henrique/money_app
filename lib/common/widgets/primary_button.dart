@@ -9,11 +9,13 @@ import '../constants/app_text_styles.dart';
 class PrimaryButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String text;
+  final List<Color>? gradientColors;
 
   const PrimaryButton({
     super.key,
     this.onPressed,
-    required this.text
+    required this.text,
+    this.gradientColors,
   });
 
   final BorderRadius _borderRadius = const BorderRadius.all(Radius.circular(32));
@@ -27,9 +29,9 @@ class PrimaryButton extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: onPressed != null
+          colors: gradientColors ?? (onPressed != null
               ? AppColors.greenGradient
-              : AppColors.greyGradient,
+              : AppColors.greyGradient),
         ),
       ),
       child: InkWell(
