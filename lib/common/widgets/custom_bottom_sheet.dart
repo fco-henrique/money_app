@@ -4,7 +4,7 @@ import 'package:money_app/common/widgets/primary_button.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_text_styles.dart';
 
-Future<void> customModalBottomSheet(BuildContext context) {
+Future<void> customModalBottomSheet(BuildContext context, String content, String buttonText) {
   return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -22,7 +22,7 @@ Future<void> customModalBottomSheet(BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget> [
-              Text("Opss, erro ao Cadastrar", style: AppTextStyles.mediumText18.copyWith(
+              Text(content, style: AppTextStyles.mediumText18.copyWith(
                   color: AppColors.greenLightOTwo
               )),
               Padding(
@@ -33,7 +33,7 @@ Future<void> customModalBottomSheet(BuildContext context) {
                   child: Material(
                     color: Colors.transparent,
                     child: PrimaryButton(
-                      text: "Tentar Novamente",
+                      text: buttonText,
                       onPressed: () => Navigator.pop(context),
                       gradientColors: AppColors.greenGradient,
                     ),
