@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:money_app/common/constants/app_colors.dart';
 import 'package:money_app/common/constants/app_text_styles.dart';
+import 'package:money_app/common/constants/routes.dart';
+import 'package:money_app/features/sign_up/sign_up_page.dart';
 
 import '../../common/widgets/multi_text_button.dart';
 import '../../common/widgets/primary_button.dart';
@@ -41,7 +43,12 @@ class OnboardingPage extends StatelessWidget {
             padding: EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 5),
             child: PrimaryButton(
               text: 'Get Started',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(
+                  context, 
+                  NamedRoutes.signUp,
+                );
+              },
             ),
           ),
           Padding(
