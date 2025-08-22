@@ -2,11 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:money_app/common/constants/routes.dart';
-import 'package:money_app/common/utils/uppercase_text_formatter.dart';
 import 'package:money_app/common/utils/validator.dart';
 import 'package:money_app/common/widgets/password_form_field.dart';
 import 'package:money_app/features/sign_in/sign_in_controller.dart';
 import 'package:money_app/features/sign_in/sign_in_state.dart';
+import 'package:money_app/locator.dart';
 import 'package:money_app/services/mock_auth_service.dart';
 
 import '../../common/constants/app_colors.dart';
@@ -28,7 +28,7 @@ class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _controller = SignInController(MockAuthService());
+  final _controller = locator.get<SignInController>();
 
   @override
   void initState() {
