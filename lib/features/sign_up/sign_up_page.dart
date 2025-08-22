@@ -8,7 +8,6 @@ import 'package:money_app/common/widgets/password_form_field.dart';
 import 'package:money_app/features/sign_up/sign_up_controller.dart';
 import 'package:money_app/features/sign_up/sign_up_state.dart';
 import 'package:money_app/locator.dart';
-import 'package:money_app/services/mock_auth_service.dart';
 
 import '../../common/constants/app_colors.dart';
 import '../../common/constants/app_text_styles.dart';

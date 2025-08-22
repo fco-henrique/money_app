@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "164336052562",
+    "project_id": "money-app-d27ed",
+    "storage_bucket": "money-app-d27ed.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164336052562:android:d8b587adb172d72f3f328b",
+        "android_client_info": {
+          "package_name": "dev.henry.money.money_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFNqBCvwea1uwinPStxLBPr5yJfSLMjq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
