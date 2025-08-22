@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:money_app/common/constants/app_colors.dart';
 import 'package:money_app/common/constants/app_text_styles.dart';
 import 'package:money_app/common/constants/routes.dart';
-import 'package:money_app/features/sign_up/sign_up_page.dart';
+// import 'package:money_app/features/sign_up/sign_up_page.dart';
 
 import '../../common/widgets/multi_text_button.dart';
 import '../../common/widgets/primary_button.dart';
@@ -54,7 +54,7 @@ class OnboardingPage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(bottom: 35),
             child: MultiTextButton(
-              onPressed: () {},
+              onPressed: () => Navigator.pushNamed(context, NamedRoutes.signIn),
               children: [
                 Text(
                   "Already have account? ",

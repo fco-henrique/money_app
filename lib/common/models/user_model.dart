@@ -4,5 +4,5 @@ class UserModel {
   final String? email;
   final String? password;
 
-  UserModel(this.id, this.name, this.email, this.password);
+  UserModel(this.id, [this.name, this.email, this.password]);
 }

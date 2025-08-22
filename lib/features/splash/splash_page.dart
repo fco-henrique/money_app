@@ -5,7 +5,7 @@ import 'package:money_app/common/constants/app_colors.dart';
 import 'package:money_app/common/constants/app_text_styles.dart';
 import 'package:money_app/common/constants/routes.dart';
 import 'package:money_app/common/widgets/custom_circular_progress_indicator.dart';
-import 'package:money_app/features/onboarding/onboarding_page.dart';
+// import 'package:money_app/features/onboarding/onboarding_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
