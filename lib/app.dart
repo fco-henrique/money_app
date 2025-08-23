@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_app/common/constants/routes.dart';
+import 'package:money_app/features/home/home_page.dart';
 // import 'package:money_app/common/themes/default_theme.dart';
 import 'package:money_app/features/onboarding/onboarding_page.dart';
 import 'package:money_app/features/sign_in/sign_in_page.dart';
@@ -19,6 +20,7 @@ class App extends StatelessWidget {
         NamedRoutes.splash: (context) => SplashPage(),
         NamedRoutes.signUp: (context) => SignUpPage(),
         NamedRoutes.signIn: (context) => SignInPage(),
+        NamedRoutes.home: (context) => HomePage(),
       },
     );
   }

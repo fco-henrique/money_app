@@ -1,11 +1,12 @@
-//import 'package:flutter/cupertino.dart';
-import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:money_app/common/constants/app_colors.dart';
 import 'package:money_app/common/constants/app_text_styles.dart';
 import 'package:money_app/common/constants/routes.dart';
 import 'package:money_app/common/widgets/custom_circular_progress_indicator.dart';
-// import 'package:money_app/features/onboarding/onboarding_page.dart';
+import 'package:money_app/features/splash/splash_controller.dart';
+import 'package:money_app/features/splash/splash_state.dart';
+import 'package:money_app/locator.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -15,19 +16,25 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  final _splashController = locator.get<SplashController>();
 
   @override
   void initState() {
     super.initState();
-    init();
+    _splashController.isUserLogged();
+    _splashController.addListener(() {
+      if (_splashController.state is SplashSuccessState) {
+        Navigator.pushReplacementNamed(context, NamedRoutes.home);
+      } else {
+        Navigator.pushReplacementNamed(context, NamedRoutes.initial);
+      }
+    });
   }
 
-  Timer init() {
-    return Timer(Duration(seconds: 3), navigateToOnboarding);
-  }
-
-  void navigateToOnboarding() {
-    Navigator.pushReplacementNamed(context, NamedRoutes.initial);
+  @override
+  void dispose() {
+    super.dispose();
+    _splashController.dispose();
   }
 
   @override

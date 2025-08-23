@@ -1,8 +1,7 @@
-// import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:money_app/features/sign_up/sign_up_state.dart';
 import 'package:money_app/services/auth_service.dart';
+import 'package:money_app/services/secure_storage.dart';
 
 class SignUpController extends ChangeNotifier {
   final AuthService _service;
@@ -18,11 +17,17 @@ class SignUpController extends ChangeNotifier {
   }
 
   Future<void> signUp({ required String name, required String email, required String password }) async {
+    final secureStorage = const SecureStorage();
     _changeState(SignUpLoadingState());
     try {
-      await _service.signUp(name: name, email: email, password: password);
+      final user = await _service.signUp(name: name, email: email, password: password);
 
-      _changeState(SignUpSuccessState());
+      if (user.id != null) {
+        await secureStorage.write(key: "CURRENT_USER", value: user.toJson());
+        _changeState(SignUpSuccessState());
+      } else {
+        throw Exception();
+      }
     } catch (e) {
       _changeState(SignUpErrorState(e.toString()));
     }
