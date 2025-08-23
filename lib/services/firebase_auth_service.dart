@@ -11,7 +11,11 @@ class FirebaseAuthService implements AuthService {
       final result = await _auth.signInWithEmailAndPassword(email: email, password: password);
 
       if (result.user != null) {
-        return UserModel(id: result.user!.uid, name: result.user!.displayName, email: result.user!.email);
+        return UserModel(
+          id: result.user!.uid, 
+          name: result.user!.displayName, 
+          email: result.user!.email
+        );
       } else {
         throw Exception();
       }
@@ -30,7 +34,11 @@ class FirebaseAuthService implements AuthService {
       if (result.user != null) {
         await result.user!.updateDisplayName(name);
 
-        return UserModel(id: result.user!.uid, name: result.user!.displayName, email: result.user!.email);
+        return UserModel(
+          id: _auth.currentUser?.uid, 
+          name: _auth.currentUser?.displayName, 
+          email: _auth.currentUser?.email,
+        );
       } else {
         throw Exception();
       }
