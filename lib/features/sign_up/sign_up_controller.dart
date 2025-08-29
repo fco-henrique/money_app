@@ -5,7 +5,9 @@ import 'package:money_app/services/secure_storage.dart';
 
 class SignUpController extends ChangeNotifier {
   final AuthService _service;
-  SignUpController(this._service);
+  final SecureStorage _secureStorage;
+
+  SignUpController(this._service, this._secureStorage);
 
   SignUpState _state = SignUpInitialState();
 
@@ -17,13 +19,12 @@ class SignUpController extends ChangeNotifier {
   }
 
   Future<void> signUp({ required String name, required String email, required String password }) async {
-    final secureStorage = const SecureStorage();
     _changeState(SignUpLoadingState());
     try {
       final user = await _service.signUp(name: name, email: email, password: password);
 
       if (user.id != null) {
-        await secureStorage.write(key: "CURRENT_USER", value: user.toJson());
+        await _secureStorage.write(key: "CURRENT_USER", value: user.toJson());
         _changeState(SignUpSuccessState());
       } else {
         throw Exception();

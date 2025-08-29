@@ -12,6 +12,6 @@ void setupDependencies() {
   locator.registerLazySingleton<AuthService>(() => FirebaseAuthService());
 
   locator.registerFactory<SplashController>(() => SplashController(const SecureStorage()));
-  locator.registerFactory<SignInController>(() => SignInController(locator.get<AuthService>()));
-  locator.registerFactory<SignUpController>(() => SignUpController(locator.get<AuthService>()));
+  locator.registerFactory<SignInController>(() => SignInController(locator.get<AuthService>(), locator.get<SecureStorage>()));
+  locator.registerFactory<SignUpController>(() => SignUpController(locator.get<AuthService>(), const SecureStorage()));
 }

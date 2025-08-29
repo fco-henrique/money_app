@@ -6,7 +6,8 @@ import 'package:money_app/services/secure_storage.dart';
 
 class SignInController extends ChangeNotifier {
   final AuthService _service;
-  SignInController(this._service);
+  final SecureStorage _secureStorage;
+  SignInController(this._service, this._secureStorage);
 
   SignInState _state = SignInInitialState();
 
@@ -17,7 +18,6 @@ class SignInController extends ChangeNotifier {
   }
 
   Future<void> signIn({ required String email, required String password }) async {
-    const _secureStorage = SecureStorage();
     _changeState(SignInLoadingState());
     try {
       final user = await _service.signIn(email: email, password: password);
