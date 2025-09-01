@@ -29,13 +29,13 @@ class OnboardingPage extends StatelessWidget {
           ),
           Text(
             "Spend Smarter",
-            style: AppTextStyles.mediumText.copyWith(
+            style: AppTextStyles.mediumText36.copyWith(
               color: AppColors.greenLightOTwo
             )
           ),
           Text(
               "Save More",
-              style: AppTextStyles.mediumText.copyWith(
+              style: AppTextStyles.mediumText36.copyWith(
                   color: AppColors.greenLightOTwo
               ),
           ),

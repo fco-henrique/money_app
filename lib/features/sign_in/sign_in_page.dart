@@ -74,7 +74,7 @@ class _SignInPageState extends State<SignInPage> {
           Text(
             "Welcome Back!",
             textAlign: TextAlign.center,
-            style: AppTextStyles.mediumText.copyWith(
+            style: AppTextStyles.mediumText36.copyWith(
               color: AppColors.greenLightOTwo,
             ),
           ),

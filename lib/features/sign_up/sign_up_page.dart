@@ -77,14 +77,14 @@ class _SignUpPageState extends State<SignUpPage> {
           Text(
             "Spend Smarter",
             textAlign: TextAlign.center,
-            style: AppTextStyles.mediumText.copyWith(
+            style: AppTextStyles.mediumText36.copyWith(
               color: AppColors.greenLightOTwo,
             ),
           ),
           Text(
             "Save More",
             textAlign: TextAlign.center,
-            style: AppTextStyles.mediumText.copyWith(
+            style: AppTextStyles.mediumText36.copyWith(
               color: AppColors.greenLightOTwo,
             ),
           ),
