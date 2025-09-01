@@ -217,6 +217,69 @@ class _HomePageState extends State<HomePage> {
               ),
             ), 
           ),
+          Positioned(
+            top: 397.h,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Transaction Histoy",
+                        style: AppTextStyles.mediumText18,
+                      ),
+                      Text(
+                        "See all",
+                        style: AppTextStyles.inputLabelText,
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemCount: 4,
+                    itemBuilder: (context, index) {
+                      final color = index % 2 == 0 ? AppColors.income : AppColors.outcome;
+                      final value = index % 2 == 0 ? "+ \$ 100.00" : "- \$ 100.00";
+
+                      return ListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                        leading: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.antiFlashWhite,
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                          ),
+                          padding: EdgeInsets.all(8),
+                          child: Icon(
+                            Icons.monetization_on_outlined
+                          ),
+                        ),
+                        title: Text(
+                          "UpWork",
+                          style: AppTextStyles.mediumText16w500,
+                        ),
+                        subtitle: Text(
+                          "Today",
+                          style: AppTextStyles.smallText13,
+                        ),
+                        trailing: Text(
+                          value,
+                          style: AppTextStyles.mediumText18.apply(color: color),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       )
     );
