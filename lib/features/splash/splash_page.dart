@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:money_app/common/constants/app_colors.dart';
 import 'package:money_app/common/constants/app_text_styles.dart';
 import 'package:money_app/common/constants/routes.dart';
+import 'package:money_app/common/extensions/sizes.dart';
 import 'package:money_app/common/widgets/custom_circular_progress_indicator.dart';
 import 'package:money_app/features/splash/splash_controller.dart';
 import 'package:money_app/features/splash/splash_state.dart';
@@ -20,6 +21,8 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => Sizes.init(context));
+
     _splashController.isUserLogged();
     _splashController.addListener(() {
       if (_splashController.state is SplashSuccessState) {
