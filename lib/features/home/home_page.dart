@@ -91,6 +91,132 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          Positioned(
+            left: 24.w,
+            right: 24.w,
+            top: 155.h,
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                vertical: 32.h,
+                horizontal: 24.w,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.darkGreen,
+                borderRadius: BorderRadius.all(Radius.circular(16))
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Total Balance",
+                              textScaler: TextScaler.linear(textScaleFactor),
+                              style: AppTextStyles.mediumText16w600.apply(color: AppColors.white),
+                            ),
+                            Text(
+                              "\$ 10,000.00",
+                              textScaler: TextScaler.linear(textScaleFactor),
+                              style: AppTextStyles.mediumText30.apply(color: AppColors.white),
+                            ),
+                          ],
+                        ),
+                        GestureDetector(
+                          onTap: () => log("options"),
+                          child: PopupMenuButton(
+                            padding:  EdgeInsets.zero,
+                            child: const Icon(
+                              Icons.more_horiz,
+                              color: AppColors.white,
+                            ),
+                            itemBuilder: (context) => [
+                              const PopupMenuItem(
+                                height: 24,
+                                child: Text("Item 1")
+                              )
+                            ]
+                          ),
+                        )
+                      ],
+                  ),
+                  SizedBox(height: 36.h,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: AppColors.white.withValues(alpha: 0.06),
+                              borderRadius: BorderRadius.all(Radius.circular(16)),
+                            ),
+                            child: Icon(
+                              Icons.arrow_downward,
+                              color: AppColors.white,
+                              size: iconSize,
+                            ),
+                          ),
+                          SizedBox(width: 4,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Income",
+                                textScaler: TextScaler.linear(textScaleFactor),
+                                style: AppTextStyles.mediumText16w500.apply(color: AppColors.white),
+                              ),
+                              Text(
+                                "\$ 2,000.00",
+                                textScaler: TextScaler.linear(textScaleFactor),
+                                style: AppTextStyles.mediumText20.apply(color: AppColors.white),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: AppColors.white.withValues(alpha: 0.06),
+                              borderRadius: BorderRadius.all(Radius.circular(16)),
+                            ),
+                            child: Icon(
+                              Icons.arrow_upward,
+                              color: AppColors.white,
+                              size: iconSize,
+                            ),
+                          ),
+                          SizedBox(width: 4,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Expenses",
+                                textScaler: TextScaler.linear(textScaleFactor),
+                                style: AppTextStyles.mediumText16w500.apply(color: AppColors.white),
+                              ),
+                              Text(
+                                "\$ 3,000.00",
+                                textScaler: TextScaler.linear(textScaleFactor),
+                                style: AppTextStyles.mediumText20.apply(color: AppColors.white),
+                              ),
+                            ],
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ), 
+          ),
         ],
       )
     );
