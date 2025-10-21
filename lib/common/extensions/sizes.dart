@@ -24,8 +24,8 @@ class Sizes {
 
     final deviceSize = deviceData?.size ?? _designSize;
 
-    _instance._height = designSize.height;
-    _instance._width = designSize.width;
+    _instance._height = deviceSize.height;
+    _instance._width = deviceSize.width;
   }
 }
 
